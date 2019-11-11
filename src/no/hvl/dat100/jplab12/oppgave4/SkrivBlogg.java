@@ -1,5 +1,5 @@
 package no.hvl.dat100.jplab12.oppgave4;
-
+import java.io.*;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
@@ -11,7 +11,19 @@ public class SkrivBlogg {
 	private static String MAPPE = System.getProperty("user.dir") + "/src/no/hvl/dat100/jplab12/tests/";
 
 	public static boolean skriv(Blogg samling, String filnavn) {
-
-		throw new UnsupportedOperationException(TODO.method());
+        PrintWriter skriver = null;
+		try {
+			File fil = new File(MAPPE+filnavn);
+			skriver = new PrintWriter(filnavn);
+			skriver.println(samling.toString());
+		} catch (FileNotFoundException e) {
+			return false;
+		} 
+		finally {
+		if (skriver != null) 
+			skriver.close();	
+		return true;
+		}
+	
 	}
 }
